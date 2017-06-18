@@ -1,5 +1,7 @@
 from tkinter import Frame, Button
-from mothership import Mothership
+
+from web_communication.mothership import Mothership
+
 
 class Application(Frame):
     def say_hi(self):
