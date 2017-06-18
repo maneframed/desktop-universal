@@ -6,8 +6,8 @@ import yaml
 from requests import get, post
 from handler import ThreadedHTTPServer, Handler
 from application import Application
-import miniupnpc
 from config import Config
+from upnp.upnp import Upnp
 
 def launchWebServer():
     server = ThreadedHTTPServer(('localhost', 9090), Handler)
@@ -18,18 +18,12 @@ if __name__ == '__main__':
     config = Config()
     tensorflow_port=config.cfg['tensorflow']['port']
     webserver_port=config.cfg['webserver']['port']
-    upnp = miniupnpc.UPnP()
-    upnp.discoverdelay = 10
-    upnp.discover()
-    upnp.selectigd()
-    # addportmapping(external-port, protocol, internal-host, internal-port, description, remote-host)
-    upnp.addportmapping(tensorflow_port, 'TCP', upnp.lanaddr, tensorflow_port, 'maneframe-tensorflow', '')
-    upnp.addportmapping(webserver_port, 'TCP', upnp.lanaddr, webserver_port, 'maneframe-webserver', '')
-
-    p = Process(target=launchWebServer)
+    upnp=Upnp();
+    upnp.add_port_mapping(upnp.get_ip_address());
+'''    p = Process(target=launchWebServer)
     p.start()
     root = Tk()
     app = Application(master=root)
     app.mainloop()
-    root.destroy()
+    root.destroy()'''
 
