@@ -24,7 +24,4 @@ dependencies:
 - zlib=1.2.8=3
 - pip:
   - schedule==0.4.3
-  - socketio-client==0.7.2
-  - websocket-client==0.42.1
-prefix: /home/dyinanc/miniconda3/envs/maneframe-desktop
-
+  - websockets==3.3

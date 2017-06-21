@@ -1,8 +1,5 @@
 maneframe:
-  backend:
-    host: http://127.0.0.1:5000
-    registrationEndpoint: /register-machine
-webserver:
-  port: 43211
+  web:
+    uri: ws://maneframe-web.herokuapp.com
 tensorflow:
   port: 43210
